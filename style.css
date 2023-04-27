@@ -1,0 +1,27 @@
+body{
+    background-color: turquoise;
+}
+hr{
+    height: 1px;
+    background-color: black;
+    border: none;
+}
+span{
+    color: #FFFDD0;
+}
+#box1{
+    border: 5px solid;
+    width: 1000px;
+    height: 200px;
+    background-color: #FFFDD0;
+    text-align: center;
+    font-size: 200px;
+    margin-top: 450px;
+    animation: AwsomeRotate;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@keyframes AwsomeRotate{
+    100%{transform: rotateZ(360deg);}
+}
