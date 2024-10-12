@@ -19,7 +19,16 @@ document.getElementById("submit").onclick = function(){
     test1 = (-b - Math.sqrt((b * b) -4 * a * c)) / (2 * a)
     console.log(test1)
 
-    document.getElementById("p2").innerHTML = "Your answer is " + test + " or " + test1
-}
+    Xvertex = (-b/(2*a))
+    console.log(Xvertex)
+    Yvertex = a*(Xvertex*Xvertex) + (b*Xvertex) + parseInt(c)
+    console.log(Yvertex)
+    if (test == test1) {
+        document.getElementById("p2").innerHTML = "The root of this function is " + test;
+    } else {
+        document.getElementById("p2").innerHTML = "The roots of the function are " + test + " and " + test1;
+    }
 
+    document.getElementById("p3").innerHTML = "The vertex of the function is on point (" + Xvertex + ", " + Yvertex + ")"
+}
 
