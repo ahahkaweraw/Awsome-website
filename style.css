@@ -1,6 +1,10 @@
 body{
     background-color: turquoise;
 }
+#p4{
+    font-size: 20px;
+    font-weight: bolder;
+}
 hr{
     height: 1px;
     background-color: black;
