@@ -29,3 +29,11 @@ span{
 @keyframes AwsomeRotate{
     100%{transform: rotateZ(360deg);}
 }
+canvas { 
+    border: 1px solid black;
+}
+canvas {
+    background-color: white; /* White background for the coordinate plane */
+    border: 1px solid #000; /* Border around the canvas */
+    display: block; /* Ensure it's a block-level element */
+}
