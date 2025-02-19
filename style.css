@@ -37,3 +37,10 @@ canvas {
     border: 1px solid #000; /* Border around the canvas */
     display: block; /* Ensure it's a block-level element */
 }
+#gamble {
+    height: 200px;
+    width: 200px;
+    text-align: center;
+    font-size: 100px;
+    border: 5px solid;
+}
