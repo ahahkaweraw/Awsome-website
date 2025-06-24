@@ -37,66 +37,77 @@ const canvas = document.getElementById("flappyCanvas");
       ctx.fillRect(pipe.x, 0, pipeWidth, pipe.gapTop);
       ctx.fillRect(pipe.x, pipe.gapTop + pipeGapHeight, pipeWidth, canvas.height);
     }
+    function drawScore() {
+        ctx.fillStyle = "#000";
+        ctx.font = "20px Arial";
+        ctx.fillText("Score: " + score, 10, 30);
+    }
+
 
     function update() {
-      if (!gameStarted) return;
+  if (!gameStarted) return;
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Bird physics
-      birdVelocity += gravity;
-      if (birdVelocity > maxFallSpeed) birdVelocity = maxFallSpeed;
-      birdY += birdVelocity;
+  // Bird physics
+  birdVelocity += gravity;
+  if (birdVelocity > maxFallSpeed) birdVelocity = maxFallSpeed;
+  birdY += birdVelocity;
 
-      drawBird();
+  drawBird();
 
-      // Shrinked hitbox
-      const birdHitX = birdX + hitboxPadding;
-      const birdHitW = birdSize - 2 * hitboxPadding;
-      const birdHitY = birdY + hitboxPadding;
-      const birdHitH = birdSize - 2 * hitboxPadding;
+  // Hitbox
+  const birdHitX = birdX + hitboxPadding;
+  const birdHitW = birdSize - 2 * hitboxPadding;
+  const birdHitY = birdY + hitboxPadding;
+  const birdHitH = birdSize - 2 * hitboxPadding;
 
-      // Optional: show hitbox for debugging
-      // ctx.strokeStyle = "red";
-      // ctx.strokeRect(birdHitX, birdHitY, birdHitW, birdHitH);
+  // Spawn pipes
+  if (frame % pipeSpawnInterval === 0) {
+    let gapTop = Math.random() * (canvas.height - pipeGapHeight - 100) + 50;
+    pipes.push({ x: canvas.width, gapTop, passed: false });
+  }
 
-      if (frame % pipeSpawnInterval === 0) {
-        let gapTop = Math.random() * (canvas.height - pipeGapHeight - 100) + 50;
-        pipes.push({ x: canvas.width, gapTop });
-      }
+  for (let i = 0; i < pipes.length; i++) {
+    pipes[i].x -= pipeSpeed;
+    drawPipe(pipes[i]);
 
-      for (let i = 0; i < pipes.length; i++) {
-        pipes[i].x -= pipeSpeed;
-        drawPipe(pipes[i]);
-
-        // Collision check with smaller hitbox
-        if (
-          birdHitX + birdHitW > pipes[i].x &&
-          birdHitX < pipes[i].x + pipeWidth &&
-          (birdHitY < pipes[i].gapTop || birdHitY + birdHitH > pipes[i].gapTop + pipeGapHeight)
-        ) {
-          alert("Game Over! Score: " + score);
-          gameStarted = false;
-          playBtn.style.display = "inline-block";
-          canvas.style.display = "none";
-          return;
-        }
-
-        if (pipes[i].x + pipeWidth === birdX) score++;
-      }
-
-      // Hit ground or fly too high
-      if (birdY + birdSize > canvas.height || birdY < 0) {
-        alert("Game Over! Score: " + score);
-        gameStarted = false;
-        playBtn.style.display = "inline-block";
-        canvas.style.display = "none";
-        return;
-      }
-
-      frame++;
-      requestAnimationFrame(update);
+    // Collision detection
+    if (
+      birdHitX + birdHitW > pipes[i].x &&
+      birdHitX < pipes[i].x + pipeWidth &&
+      (birdHitY < pipes[i].gapTop || birdHitY + birdHitH > pipes[i].gapTop + pipeGapHeight)
+    ) {
+      alert("Game Over! Score: " + score);
+      gameStarted = false;
+      playBtn.style.display = "inline-block";
+      canvas.style.display = "none";
+      return;
     }
+
+    // ✅ Score update
+    if (!pipes[i].passed && pipes[i].x + pipeWidth < birdX) {
+      pipes[i].passed = true;
+      score++;
+    }
+  }
+
+  // Draw score on screen
+  drawScore();
+
+  // Game over if bird hits top/bottom
+  if (birdY + birdSize > canvas.height || birdY < 0) {
+    alert("Game Over! Score: " + score);
+    gameStarted = false;
+    playBtn.style.display = "inline-block";
+    canvas.style.display = "none";
+    return;
+  }
+
+  frame++;
+  requestAnimationFrame(update);
+}
+
 
     document.addEventListener("keydown", () => {
       if (gameStarted) birdVelocity = flapStrength;
