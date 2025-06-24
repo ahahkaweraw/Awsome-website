@@ -26,14 +26,14 @@ span{
 @keyframes AwsomeRotate{
     100%{transform: rotateZ(360deg);}
 }
-canvas { 
-    border: 1px solid black;
-}
 canvas {
-    background-color: white; /* White background for the coordinate plane */
-    border: 1px solid #000; /* Border around the canvas */
-    display: block; /* Ensure it's a block-level element */
+  background-color: white;
+  border: 2px solid black;
+  display: block;
+  margin: 20px 0; /* aligns with the left instead of centering */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
 #gamble {
     height: 200px;
     width: 200px;
@@ -62,3 +62,41 @@ nav {
   nav a:hover {
     color: #d1e7ff;
   }
+
+.popup-message {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 3px solid black;
+  padding: 30px;
+  z-index: 1000;
+  font-size: 24px;
+  font-weight: bold;
+  color: darkgreen;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+#Clicker {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+#Clicker img {
+  width: 200px;
+  height: auto;
+}
+
+#Counter {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+#p4 {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
