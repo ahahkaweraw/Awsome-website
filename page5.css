@@ -71,3 +71,29 @@ body {
   nav a:hover {
     color: #d1e7ff;
   }
+
+     #gameContainer {
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    #playBtn {
+      margin: 1rem auto;
+      padding: 12px 20px;
+      font-size: 1.1rem;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #flappyCanvas {
+      display: none;
+      margin: 0 auto;
+      border: 2px solid #000;
+      border-radius: 12px;
+      background-color: #e0f7fa;
+    }
+/* Remove the invalid selector */
+/* image { text-wrap: true; } */
