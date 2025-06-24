@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="page5.css">
+    <title>Awsome website</title>
+</head>
+<body>
+    <h1>Integral Evaluator</h1> <hr>
+    <p color: #555;>Calculates the area under the curve using the antiderivative and limits.</p>
+
+    <label>F(x):</label><br>
+    <input type="text" id="antiderivative" placeholder="(x^4)/4 + 2*x"><span> + C</span><br>
+    <label>Lower Limit (a)</label><br>
+    <input type="text" id="lowerlimit" placeholder="-1"><br>
+    <label>Upper Limit (b)</label><br>
+    <input type="text" id="upperlimit" placeholder="5"><br><br>
+    <button type="button" id="submit">Submit</button><br>
+    <p id="result"></p>
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@12.4.1/lib/browser/math.js"></script>
+    <script src="integralevaluator.js"></script>
+</body>
+</html>
