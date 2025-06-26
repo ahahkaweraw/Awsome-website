@@ -1,20 +1,46 @@
-document.getElementById("submit").onclick = function(){
+document.getElementById("submit").addEventListener("click", function () {
+  let expr = document.getElementById("antiderivative").value;
+  let resultDisplay = document.getElementById("result");
 
-    const expr = document.getElementById("antiderivative").value;
-    const b = document.getElementById("upperlimit").value;
-    const a = document.getElementById("lowerlimit").value;
+  function parseLimit(input) {
+    input = input.toLowerCase()
+      .replace(/pi/g, "Math.PI")
+      .replace(/π/g, "Math.PI")
+      .replace(/\be\b/g, "Math.E");
+
+    input = input.replace(/\^/g, "**");
+
+    const mathFuncs = ["sin", "cos", "tan", "log", "exp", "sqrt", "abs"];
+    mathFuncs.forEach(fn => {
+      const regex = new RegExp(`(?<!\\.)\\b${fn}\\(`, "g");
+      input = input.replace(regex, `Math.${fn}(`);
+    });
 
     try {
-        if (!expr.trim()) throw new Error("Antiderivative cannot be empty.");
-        const node = math.parse(expr);
-        const f = node.compile();  // This must succeed
-        const fA = f.evaluate({ x: b })
-        const fB = f.evaluate({ x: a })
-        const area = fA - fB;
-        console.log(f)
-        document.getElementById("result").innerText = `Area: ${area}`;
-    } catch (err) {
-        document.getElementById("result").innerText = `Error: ${err.message}`;
+      return new Function(`return ${input};`)();
+    } catch {
+      throw new Error("Invalid limit expression");
     }
+  }
 
-}
+  try {
+    let a = parseLimit(document.getElementById("lowerlimit").value);
+    let b = parseLimit(document.getElementById("upperlimit").value);
+
+    expr = expr.replace(/\|([^|]+)\|/g, "Math.abs($1)");
+    expr = expr.replace(/\^/g, "**");
+
+    const mathFuncs = ["sin", "cos", "tan", "log", "exp", "sqrt"];
+    mathFuncs.forEach(fn => {
+      const regex = new RegExp(`(?<!\\.)\\b${fn}\\(`, "g");
+      expr = expr.replace(regex, `Math.${fn}(`);
+    });
+
+    let F = new Function("x", `return ${expr};`);
+    let area = F(b) - F(a);
+
+    resultDisplay.textContent = `Area: ${parseFloat(area.toFixed(6))}`;
+  } catch (err) {
+    resultDisplay.textContent = "Error: " + err.message;
+  }
+});
