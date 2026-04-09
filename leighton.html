@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="page5.css">
+    <style>
+      .content-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .image-column {
+        flex-shrink: 0;
+      }
+      .image-column img {
+        display: block;
+        width: 300px;
+        border-radius: 12px;
+        margin-bottom: 15px;
+      }
+      .text-right {
+        max-width: 320px;
+      }
+      .confetti-button {
+        display: inline-block;
+        padding: 12px 22px;
+        min-width: 220px;
+        border: none;
+        background: #ff6b6b;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 12px;
+        text-align: center;
+      }
+      .confetti-button:hover {
+        background: #ff4c4c;
+      }
+      @media (max-width: 800px) {
+        .content-row {
+          display: block;
+        }
+      }
+    </style>
+    <title>Awesome Website</title>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="Page2.html">Quadratic Calculator</a>
+  <a href="Page3.html">Cookie Clicker²</a>
+  <a href="gacha.html">Gacha</a>
+  <a href="Page5.html">Integral Calculator</a>
+  <a href="henguinz.html">Henguinz's Page</a>
+</nav>
+
+<h1>Leighton (The cool one)</h1>
+
+<div class="content-row">
+  <div class="image-column">
+    <img src="leightonsunset.JPG" alt="Cool image">
+    <img src="dog.jpeg" alt="Cool image">
+  </div>
+
+  <div class="text-right">
+    <p>
+      🎥 <strong>Subscribe on YouTube:</strong><br>
+      <a href="https://youtube.com/@Henguinz" target="_blank">
+        youtube.com/@Leighton
+      </a>
+    </p>
+    <button class="confetti-button" id="confetti-btn">🎉 Show confetti</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+  function launchConfetti() {
+    confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
+    confetti({ particleCount: 80, spread: 140, origin: { y: 0.4 } });
+  }
+
+  document.getElementById('confetti-btn')?.addEventListener('click', launchConfetti);
+  window.addEventListener('load', launchConfetti);
+</script>
+
+</body>
+</html>
