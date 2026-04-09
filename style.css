@@ -12,11 +12,12 @@ span{
 }
 #box1{
     border: 5px solid;
-    width: 1000px;
+    width: 90%;
+    max-width: 1000px;
     height: 200px;
     background-color: #FFFDD0;
     text-align: center;
-    font-size: 200px;
+    font-size: clamp(80px, 15vw, 200px);
     margin-top: 450px;
     animation: AwsomeRotate;
     animation-duration: 2s;
@@ -32,20 +33,26 @@ canvas {
   display: block;
   margin: 20px 0; /* aligns with the left instead of centering */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: auto;
+  max-width: 500px;
 }
 
 #gamble {
-    height: 200px;
-    width: 200px;
+    height: clamp(100px, 30vw, 200px);
+    width: clamp(100px, 30vw, 200px);
     text-align: center;
-    font-size: 100px;
+    font-size: clamp(50px, 12vw, 100px);
     border: 5px solid;
+    display: block;
+    margin: 20px auto;
 }
 nav {
     background-color: #FFFDD0; /* blue */
     padding: 10px 20px;
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
     align-items: center;
     font-family: Arial, sans-serif;
   }
@@ -55,12 +62,29 @@ nav {
     color: rgb(0, 0, 0);
     text-decoration: none;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 0.9rem;
     transition: color 0.3s ease;
+    white-space: nowrap;
   }
 
   nav a:hover {
     color: #d1e7ff;
+  }
+
+  @media (max-width: 480px) {
+    body {
+      padding: 1rem;
+    }
+    nav {
+      flex-direction: column;
+      gap: 8px;
+    }
+    nav a {
+      font-size: 0.9rem;
+      width: 100%;
+      text-align: center;
+      padding: 5px 0;
+    }
   }
 
 .popup-message {
