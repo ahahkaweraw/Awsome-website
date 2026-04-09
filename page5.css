@@ -78,27 +78,6 @@ body {
     color: #d1e7ff;
   }
 
-  @media (max-width: 480px) {
-    body {
-      padding: 1rem;
-    }
-    nav {
-      flex-direction: column;
-      gap: 8px;
-      padding: 12px 15px;
-      align-items: stretch;
-    }
-    nav a {
-      font-size: 0.9rem;
-      width: 100%;
-      text-align: center;
-      padding: 8px 10px;
-      display: block;
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 4px;
-    }
-  }
-
      #gameContainer {
       max-width: 620px;
       margin: 0 auto;
