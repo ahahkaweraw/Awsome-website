@@ -78,12 +78,17 @@ nav {
     nav {
       flex-direction: column;
       gap: 8px;
+      padding: 12px 15px;
+      align-items: stretch;
     }
     nav a {
       font-size: 0.9rem;
       width: 100%;
       text-align: center;
-      padding: 5px 0;
+      padding: 8px 10px;
+      display: block;
+      background-color: rgba(0, 0, 0, 0.05);
+      border-radius: 4px;
     }
   }
 
